@@ -41,6 +41,19 @@
       </div>
     </div>
   </section>
+
+  <section id="greet-section" class="card mb-4">
+    <div class="card-body">
+      <h2 class="h4">3. Greet</h2>
+      <input id="greet-input">
+      <button id="greet-btn" class="btn btn-primary">
+        Fetch /api/greet/:name
+      </button>
+      <div id="greet-result" class="alert alert-secondary mt-3 mb-0" role="alert">
+        Click the button after an input...
+      </div>
+    </div>
+  </section>
  
   <!-- You will add more sections below -->
  
@@ -90,6 +103,10 @@
           document.getElementById('time-result').textContent = 'Error: ' + error.message;
         });
     })
+
+    // B.3
+
+    
 
 
   </script>
