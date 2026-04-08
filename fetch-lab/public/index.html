@@ -23,6 +23,11 @@
         role="alert">
         Click the button...
       </div>
+      <h2 class="h4">2. Time (json response)</h2>
+      <button id="time-btn"
+        class="btn btn-primary">
+        Fetch /api/time
+      </button>
     </div>
   </section>
  
@@ -45,6 +50,8 @@
         });
     }
 
+    // B.1
+
     document.getElementById('hello-btn')
     .addEventListener('click', () => {
       fetch('/hello')
@@ -57,6 +64,18 @@
           document.getElementById('hello-result').textContent = 'Error: ' + error.message;
         });
     });
+
+    // B.2
+
+    document.getElementById('time-btn')
+    .addEventListener('click', () => {
+      fetch('/api/time')
+        .then(statusCheck)
+        .then(response => response.json())
+        .then( json => document.getElementById('time-result').textContent = json)
+    })
+
+
   </script>
 </main>
 </body>
