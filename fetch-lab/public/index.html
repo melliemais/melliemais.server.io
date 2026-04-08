@@ -23,11 +23,22 @@
         role="alert">
         Click the button...
       </div>
+      
+    </div>
+  </section>
+
+  <section id="time-section" class = "card mb-4">
+    <div class="card-body">
       <h2 class="h4">2. Time (json response)</h2>
       <button id="time-btn"
         class="btn btn-primary">
         Fetch /api/time
       </button>
+      <div id="time-result"
+        class="alert alert-secondary mt-3 mb-0"
+        role="alert">
+        Click the button...
+      </div>
     </div>
   </section>
  
@@ -72,7 +83,12 @@
       fetch('/api/time')
         .then(statusCheck)
         .then(response => response.json())
-        .then( json => document.getElementById('time-result').textContent = json)
+        .then(text => {
+          document.getElementById('time-result').textContent = JSON.stringify(text);
+        })
+        .catch(error => {
+          document.getElementById('time-result').textContent = 'Error: ' + error.message;
+        });
     })
 
 
