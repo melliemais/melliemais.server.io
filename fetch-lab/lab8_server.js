@@ -132,16 +132,6 @@ app.get('/api/messages', (req, res) => {
 });
 
 app.post('/api/messages', (req, res) => {
-
-    /**
-     *     fetch('/api/messages', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-    );
-     */
     console.log(req.body);
     let text = req.body.text;
     let author = req.body.author;
@@ -160,4 +150,10 @@ app.post('/api/messages', (req, res) => {
     res.type('json').send(message);
 });
 
-// https://dl.acm.org/doi/epdf/10.1145/3485447.3512143
+/** 9 */
+
+// A
+
+app.get('/api/headers', (req, res) => {
+  res.json(req.headers);
+});
