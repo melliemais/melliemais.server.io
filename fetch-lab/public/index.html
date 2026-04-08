@@ -105,8 +105,49 @@
     })
 
     // B.3
-
     
+    document.getElementById('greet-btn').addEventListener('click', () => {
+        const name = document.getElementById('greet-input').value;
+        fetch('/api/greet/' + name)
+          .then(statusCheck)
+          .then(res => res.json())
+          .then(data => {
+            document.getElementById('greet-result').textContent = data.greeting;
+            /* display data.greeting */
+          })
+          .catch(error => {
+            document.getElementById('greet-result').textContent = 'Error: ' + error.message;
+            /* handle error */
+          });
+      });
+
+      // B.4
+
+          document.getElementById('slow-btn')
+      .addEventListener('click', () => {
+        const resultDiv =
+          document.getElementById('slow-result');
+        resultDiv.textContent =
+          'Loading... please wait';
+        resultDiv.className =
+          'alert alert-secondary mt-3';
+    
+        fetch('/api/slow')
+          .then(statusCheck)
+          .then(res => res.json())
+          .then(data => {
+            resultDiv.textContent = data.message;
+            resultDiv.className =
+              'alert alert-success mt-3';
+          })
+          .catch(error => {
+            resultDiv.textContent =
+              'Error: ' + error.message;
+            resultDiv.className =
+              'alert alert-danger mt-3';
+          });
+      });
+
 
 
   </script>
