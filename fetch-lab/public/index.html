@@ -103,19 +103,43 @@
     });
 
     // B.2
-
-    document.getElementById('time-btn')
-    .addEventListener('click', () => {
-      fetch('/api/time')
-        .then(statusCheck)
-        .then(response => response.json())
-        .then(text => {
-          document.getElementById('time-result').textContent = JSON.stringify(text);
+    /**
+        document.getElementById('time-btn')
+        .addEventListener('click', () => {
+        
+          fetch('/api/time')
+            .then(statusCheck)
+            .then(response => response.json())
+            .then(text => {
+              document.getElementById('time-result').textContent = JSON.stringify(text);
+            })
+            .catch(error => {
+              document.getElementById('time-result').textContent = 'Error: ' + error.message;
+            });
+          
         })
-        .catch(error => {
-          document.getElementById('time-result').textContent = 'Error: ' + error.message;
-        });
-    })
+    */
+
+    // C.1
+    document.getElementById('time-btn')
+    .addEventListener('click', async () => {
+      try {
+        const response =
+          await fetch('/api/time');
+        await statusCheck(response);
+        const data =
+          await response.json();
+        document.getElementById(
+          'time-result').textContent =
+            data.message + ': '
+            + data.currentTime;
+      } catch (error) {
+        document.getElementById(
+          'time-result').textContent =
+            'Error: ' + error.message;
+      }
+    });
+
 
     // B.3
     
