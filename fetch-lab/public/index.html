@@ -81,6 +81,20 @@
     </div>
   </section>
 
+  <section id="fetch-section" class="card mb-4">
+    <div class="card-body">
+      <h2 class="h4">5. Fetch Form</h2>
+      <label for="Author">Name:</label>
+      <input type="text" id="fetch-author" placeholder="">
+      <label for="Text">Name:</label>
+      <input type="text" id="fetch-text" placeholder="">
+      <button id="fetch-btn">Submit</button>
+      <div id="fetch-result" class="alert alert-secondary mt-3 mb-0" role="alert">
+        Submit your fetch...
+      </div>
+    </div>
+  </section>
+
   <!-- You will add more sections below -->
  
   <script>
@@ -233,6 +247,25 @@
 
     document.getElementById("form-btn").addEventListener('click', postMessage);
 
+    // D.3
+
+    document.getElementById("fetch-btn").addEventListener('click', () => {
+      let fetchResult = document.getElementById("fetch-result");
+      fetch('https://api.hooklistener.com/anon/5d899311-e082-4fed-b7b5-5c1ad8b856d5', postMessage)
+      .then(statusCheck)
+      .then(res => res.json())
+      .then(data => { 
+        fetchResult.textContent = data.message;
+        fetchResult.className =
+        'alert alert-success mt-3';
+      })
+      .catch(error => {
+        fetchResult.textContent = 'Error: ' + error.message;
+        fetchResult.className = 'alert alert-danger mt-3';
+      });
+    });
+
+    
 
   </script>
 </main>

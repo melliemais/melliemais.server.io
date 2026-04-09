@@ -13,11 +13,6 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
-
-// endpoints
-
-// endpoints
-
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log('Server is running on port '+PORT);
@@ -158,7 +153,6 @@ app.get('/api/headers', (req, res) => {
   res.json(req.headers);
 });
 
-// B
 
 
 
