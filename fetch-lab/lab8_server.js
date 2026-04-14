@@ -15,13 +15,16 @@ app.use(express.static('public'));
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-    console.log('Server is running on port '+PORT);
+    console.log(`Server is running on port ${PORT}`);
 });
 
 // B.1
 
+let visitorNumber = 0;
+
 app.get('/hello', (req, res) => {
-    res.type('text').send('Hello from the server!');
+    visitorNumber++;
+    res.type('text').send(`Hello from the server! You are visitor #${visitorNumber}`);
 });
 
 // B.2

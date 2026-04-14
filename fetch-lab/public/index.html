@@ -83,7 +83,7 @@
 
   <section id="fetch-section" class="card mb-4">
     <div class="card-body">
-      <h2 class="h4">5. Fetch Form</h2>
+      <h2 class="h4">6. Fetch Form</h2>
       <label for="Author">Name:</label>
       <input type="text" id="fetch-author" placeholder="">
       <label for="Text">Name:</label>
@@ -176,7 +176,7 @@
           .then(statusCheck)
           .then(res => res.json())
           .then(data => {
-            document.getElementById('greet-result').textContent = data.greeting;
+              document.getElementById('greet-result').textContent = data.greeting;
             /* display data.greeting */
           })
           .catch(error => {
