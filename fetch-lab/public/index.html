@@ -95,6 +95,18 @@
     </div>
   </section>
 
+  <section id="classmate">
+    <div class="card-body">
+      <h2 class="h4">7. Classmate</h2>
+      <label for="Author">Name:</label>
+      <input type="text" id="classmate-url" placeholder="">
+      <button id="classmate-btn">Submit</button>
+      <div id="classmate-result" class="alert alert-secondary mt-3 mb-0" role="alert">
+        Submit your request...
+      </div>
+    </div>
+  </section>
+
   <!-- You will add more sections below -->
  
   <script>
@@ -265,7 +277,27 @@
       });
     });
 
-    
+    // F.2
+    async function fetchFromClassmate(endpoint) {
+      const baseUrl =
+        document.getElementById('classmate-url').value;
+      const url = baseUrl + endpoint;
+      try {
+        const response =
+          await fetch(url);
+        const data =
+          await response.json();
+        document.getElementById(
+          'classmate-result')
+          .textContent =
+            JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById(
+          'classmate-result')
+          .textContent =
+            'Error: ' + error.message;
+      }
+    }
 
   </script>
 </main>
