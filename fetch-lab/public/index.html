@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,6 +11,34 @@
 <main class="container py-4">
   <h1 class="mb-4">Fetch Lab</h1>
  
+  <section id="fetch-from" class="card mb-4">
+    <div class="card-body">
+    <h2 class="h4">Fetch from...</h2>
+    <input id="classmate-url" style="width: 40em"><p></p>
+    <button id="hello-fetch"
+        class="btn btn-primary">
+        Get /hello
+    </button>
+    <button id="time-fetch"
+        class="btn btn-primary">
+        Get /api/time
+    </button>
+    <button id="headers-fetch"
+        class="btn btn-primary">
+        Get /api/headers
+    </button>
+    <button id="unreliable-fetch"
+        class="btn btn-primary">
+        Get /api/unreliable
+    </button>
+    <div id="classmate-result"
+    class="alert alert-secondary mt-3 mb-0"
+    role="alert">Click "External" from a fetch...
+    </div>
+    
+  </div>
+  </section>
+
   <section id="hello-section" class="card mb-4">
     <div class="card-body">
       <h2 class="h4">1. Hello (text response)</h2>
@@ -18,6 +46,7 @@
         class="btn btn-primary">
         Fetch /hello
       </button>
+      
       <div id="hello-result"
         class="alert alert-secondary mt-3 mb-0"
         role="alert">
@@ -34,6 +63,7 @@
         class="btn btn-primary">
         Fetch /api/time
       </button>
+      
       <div id="time-result"
         class="alert alert-secondary mt-3 mb-0"
         role="alert">
@@ -91,18 +121,6 @@
       <button id="fetch-btn">Submit</button>
       <div id="fetch-result" class="alert alert-secondary mt-3 mb-0" role="alert">
         Submit your fetch...
-      </div>
-    </div>
-  </section>
-
-  <section id="classmate">
-    <div class="card-body">
-      <h2 class="h4">7. Classmate</h2>
-      <label for="Author">Name:</label>
-      <input type="text" id="classmate-url" placeholder="">
-      <button id="classmate-btn">Submit</button>
-      <div id="classmate-result" class="alert alert-secondary mt-3 mb-0" role="alert">
-        Submit your request...
       </div>
     </div>
   </section>
@@ -278,24 +296,32 @@
     });
 
     // F.2
+    document.getElementById("hello-fetch").addEventListener('click', () => {
+      fetchFromClassmate('hello');
+    })
+
+    document.getElementById("time-fetch").addEventListener('click', () => {
+      fetchFromClassmate('api/time');
+    })
+
+    document.getElementById("headers-fetch").addEventListener('click', () => {
+      fetchFromClassmate('api/headers');
+    })
+
+    document.getElementById("unreliable-fetch").addEventListener('click', () => {
+      fetchFromClassmate('api/unreliable');
+    })
+
     async function fetchFromClassmate(endpoint) {
-      const baseUrl =
-        document.getElementById('classmate-url').value;
+      const baseUrl = document.getElementById('classmate-url').value;
+      console.log(baseUrl);
       const url = baseUrl + endpoint;
       try {
-        const response =
-          await fetch(url);
-        const data =
-          await response.json();
-        document.getElementById(
-          'classmate-result')
-          .textContent =
-            JSON.stringify(data, null, 2);
+        const response = await fetch(url);
+        const data = await response.json();
+        document.getElementById('classmate-result').textContent = JSON.stringify(data, null, 2);
       } catch (error) {
-        document.getElementById(
-          'classmate-result')
-          .textContent =
-            'Error: ' + error.message;
+        document.getElementById('classmate-result').textContent = 'Error: ' + error.message;
       }
     }
 
